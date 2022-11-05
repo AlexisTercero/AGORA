@@ -5,7 +5,8 @@ import Icon from './app/components/Icon';
 import MessagesScreen from './app/screens/MessagesScreen';
 import ListItem from './app/components/ListItem';
 import AccountScreen from './app/screens/AccountScreen';
+import ListingScreen from './app/screens/ListingScreen';
 
 export default function App() {
-  return <AccountScreen />;
+  return <ListingScreen />;
 }

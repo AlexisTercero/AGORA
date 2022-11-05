@@ -3,8 +3,8 @@ import Constants from 'expo-constants'; //Trae data data puntual sobre el sistem
 
 import { SafeAreaView, StyleSheet } from 'react-native';
 
-function Screen({ children }) {
-  return <SafeAreaView style={styles.screen}>{children}</SafeAreaView>;
+function Screen({ children, style }) {
+  return <SafeAreaView style={[styles.screen, style]}>{children}</SafeAreaView>;
 }
 
 const styles = StyleSheet.create({

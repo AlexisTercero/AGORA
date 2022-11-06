@@ -7,11 +7,13 @@ import ListItem from './app/components/ListItem';
 import AccountScreen from './app/screens/AccountScreen';
 import ListingScreen from './app/screens/ListingScreen';
 import AppTextInput from './app/components/AppTextInput';
+import AppPicker from './app/components/AppPicker';
 
 export default function App() {
   return (
     <Screen>
-      <AppTextInput placeholder="First Name" icon="email" />
+      <AppPicker placeholder="Category" icon="apps" />
+      <AppTextInput placeholder="Email" icon="email" />
     </Screen>
   );
 }

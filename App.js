@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import Screen from './app/components/Screen';
 import Icon from './app/components/Icon';
@@ -16,9 +16,17 @@ const categories = [
 ];
 
 export default function App() {
+  const [category, setCategory] = useState();
+
   return (
     <Screen>
-      <AppPicker items={categories} placeholder="Category" icon="apps" />
+      <AppPicker
+        selectedItem={category}
+        onSelectItem={(item) => setCategory(item)}
+        items={categories}
+        placeholder="Category"
+        icon="apps"
+      />
       <AppTextInput placeholder="Email" icon="email" />
     </Screen>
   );

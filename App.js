@@ -1,13 +1,33 @@
-import React, { useState } from 'react';
-import { View } from 'react-native';
-import AccountScreen from './app/screens/AccountScreen';
-import ListingScreen from './app/screens/ListingScreen';
-import ListingEditScreen from './app/screens/ListingEditScreen';
-import LoginScreen from './app/screens/LoginScreen';
-import MessagesScreen from './app/screens/MessagesScreen';
-import ViewImageScreen from './app/screens/ViewImageScreen';
-import WelcomeScreen from './app/screens/WelcomeScreen';
+import React, { useEffect, useState } from 'react';
+import * as ImagePicker from 'expo-image-picker';
+
+import Screen from './app/components/Screen';
+import ImageInput from './app/components/ImageInput';
 
 export default function App() {
-  return <ListingEditScreen />;
+  const [imageUri, setImageUri] = useState();
+  const requestPermission = async () => {
+    const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!granted) alert('You need to enable permission to access the library');
+  };
+  useEffect(() => {
+    requestPermission();
+  }, []);
+
+  const selectImage = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync();
+      if (!result.cancelled) setImageUri(result.uri);
+    } catch (error) {
+      console.log('Error reading Image', error);
+    }
+  };
+  return (
+    <Screen>
+      <ImageInput
+        imageUri={imageUri}
+        onChangeImage={(uri) => setImageUri(uri)}
+      />
+    </Screen>
+  );
 }

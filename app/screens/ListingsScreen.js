@@ -6,36 +6,31 @@ import colors from '../config/colors';
 import listingsApi from '../api/listings';
 import routes from '../navigation/routes';
 import Screen from '../components/Screen';
-
-// const listings = [
-//   {
-//     id: 1,
-//     title: 'Leather jacket for sale',
-//     price: 300,
-//     image: require('../assets/leather-jacket.jpeg'),
-//   },
-//   {
-//     id: 2,
-//     title: 'Pink Couch',
-//     price: 3000,
-//     image: require('../assets/pink-couch.jpeg'),
-//   },
-// ];
+import AppText from '../components/Text';
+import Button from '../components/Button';
 
 function ListingsScreen({ navigation }) {
   const [listings, setListings] = useState([]);
-
+  const [error, setError] = useState(false);
   useEffect(() => {
     loadListings();
   }, []);
 
   const loadListings = async () => {
     const response = await listingsApi.getListings();
+    if (!response.ok) return setError(true);
+    setError(false);
     setListings(response.data);
   };
 
   return (
     <Screen style={styles.screen}>
+      {error && (
+        <>
+          <AppText>Couldn't retrieve the listings.</AppText>
+          <Button title="Retry" onPress={loadListings} />
+        </>
+      )}
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}

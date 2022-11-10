@@ -1,25 +1,49 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import * as Yup from 'yup';
+import jwtDecode from 'jwt-decode';
 
 import Screen from '../components/Screen';
-import { AppForm, AppFormField, SubmitButton } from '../components/forms';
+import {
+  ErrorMessage,
+  Form,
+  FormField,
+  SubmitButton,
+} from '../components/forms';
+import authApi from '../api/auth';
+import AuthContext from '../auth/context';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
-  password: Yup.string().required().min(6).label('Password'),
+  password: Yup.string().required().min(5).label('Password'),
 });
 
 function LoginScreen(props) {
+  const authContext = useContext(AuthContext);
+  const [loginFailed, setLoginFailed] = useState(false);
+
+  const handleSubmit = async ({ email, password }) => {
+    const result = await authApi.login(email, password);
+
+    if (!result.ok) return setLoginFailed(true);
+    setLoginFailed(false);
+    const user = jwtDecode(result.data);
+    authContext.setUser(user);
+  };
+
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require('../assets/logo-red.png')} />
-      <AppForm
+      <Form
         initialValues={{ email: '', password: ' ' }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
-        <AppFormField
+        <ErrorMessage
+          error="Invalid email and/or password."
+          visible={loginFailed}
+        />
+        <FormField
           autoCapitalize="none" //evita que automaticamente la primer letra del email se vuelva mayuscula
           autoCorrect={false} //evita correccion ortografica automatica
           icon="email"
@@ -29,7 +53,7 @@ function LoginScreen(props) {
           textContentType="emailAddress" //ios permite autocompletar desde la keychain
         />
 
-        <AppFormField
+        <FormField
           autoCapitalize="none"
           autoCorrect={false}
           icon="lock"
@@ -39,7 +63,7 @@ function LoginScreen(props) {
           textContentType="password"
         />
         <SubmitButton title="Login" />
-      </AppForm>
+      </Form>
     </Screen>
   );
 }

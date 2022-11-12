@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import colors from '../config/colors';
 import Icon from './Icon';
 import Text from './Text';
 
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginTop: 5,
     textAlign: 'center',
+    color: colors.white,
   },
 });
 

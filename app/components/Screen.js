@@ -14,7 +14,7 @@ function Screen({ children, style }) {
 
 const styles = StyleSheet.create({
   screen: {
-    backgroundColor: 'pink',
+    backgroundColor: colors.primary,
     flex: 1,
     paddingTop: Constants.statusBarHeight, //obtengo la altura exacta de la status bar del dispositivo por medio de Constants.
   },

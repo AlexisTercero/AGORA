@@ -30,7 +30,7 @@ function LoginScreen(props) {
 
   return (
     <Screen style={styles.container}>
-      <Image style={styles.logo} source={require('../assets/logo-red.png')} />
+      <Image style={styles.logo} source={require('../assets/logo.png')} />
       <Form
         initialValues={{ email: '', password: '' }}
         onSubmit={handleSubmit}
@@ -70,10 +70,9 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    width: 80,
-    height: 80,
+    width: 90,
+    height: 90,
     alignSelf: 'center',
-    marginTop: 50,
     marginBottom: 20,
   },
 });

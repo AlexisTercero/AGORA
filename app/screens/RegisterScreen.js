@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 import * as Yup from 'yup';
 
 import Screen from '../components/Screen';
@@ -49,7 +49,9 @@ function RegisterScreen() {
   return (
     <>
       <ActivityIndicator visible={registerApi.loading || loginApi.loading} />
+
       <Screen style={styles.container}>
+        <Image style={styles.logo} source={require('../assets/logo.png')} />
         <Form
           initialValues={{ name: '', email: '', password: '' }}
           onSubmit={handleSubmit}
@@ -90,6 +92,12 @@ function RegisterScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+  },
+  logo: {
+    width: 90,
+    height: 90,
+    alignSelf: 'center',
+    marginBottom: 20,
   },
 });
 

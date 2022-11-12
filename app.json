@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Agora",
-    "slug": "Agora",
+    "name": "Ágora",
+    "slug": "Ágora",
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./app/assets/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#e63c4b"
+      "backgroundColor": "#2db4d3"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

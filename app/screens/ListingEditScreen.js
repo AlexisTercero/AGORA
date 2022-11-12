@@ -77,6 +77,7 @@ const categories = [
     icon: 'application',
     label: 'Other',
     value: 9,
+    color: 'white',
   },
 ];
 

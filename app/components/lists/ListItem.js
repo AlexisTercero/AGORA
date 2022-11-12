@@ -35,7 +35,7 @@ function ListItem({
               )}
             </View>
             <MaterialCommunityIcons
-              color={colors.medium}
+              color={colors.light}
               name="chevron-right"
               size={25}
             />
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     padding: 15,
-    backgroundColor: colors.white,
+    backgroundColor: colors.dark,
   },
   detailsContainer: {
     flex: 1,
@@ -64,10 +64,11 @@ const styles = StyleSheet.create({
     borderRadius: 35,
   },
   subTitle: {
-    color: colors.medium,
+    color: colors.primary,
   },
   title: {
     fontWeight: '500',
+    color: colors.white,
   },
 });
 

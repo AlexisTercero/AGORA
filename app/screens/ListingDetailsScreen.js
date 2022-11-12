@@ -1,16 +1,22 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import AppText from '../components/Text';
-
+import { Image } from 'react-native-expo-image-cache';
 import colors from '../config/colors';
-import { ListItem } from '../components/lists';
+
+import ListItem from '../components/lists/ListItem';
 
 function ListingDetailsScreen({ route }) {
   const listing = route.params;
 
   return (
     <View>
-      <Image style={styles.image} source={listing.image} />
+      <Image
+        style={styles.image}
+        preview={{ uri: listing.images[0].thumbnailUrl }}
+        tint="light"
+        uri={listing.images[0].url}
+      />
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>{listing.title}</AppText>
         <AppText style={styles.price}>${listing.price}</AppText>
@@ -28,7 +34,7 @@ function ListingDetailsScreen({ route }) {
 
 const styles = StyleSheet.create({
   detailsContainer: {
-    padding: 20,
+    padding: 15,
   },
   image: {
     width: '100%',
@@ -38,14 +44,13 @@ const styles = StyleSheet.create({
     color: colors.secondary,
     fontWeight: 'bold',
     fontSize: 20,
-    marginVertical: 10,
   },
   title: {
     fontSize: 24,
     fontWeight: '500',
   },
   userContainer: {
-    marginVertical: 40,
+    marginVertical: 10,
   },
 });
 

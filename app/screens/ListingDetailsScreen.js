@@ -17,6 +17,7 @@ function ListingDetailsScreen({ route }) {
         tint="light"
         uri={listing.images[0].url}
       />
+
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>{listing.title}</AppText>
         <AppText style={styles.price}>${listing.price}</AppText>
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 300,
+    resizeMode: 'cover',
   },
   price: {
     color: colors.secondary,
